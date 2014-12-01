@@ -15,20 +15,16 @@ import org.wltea.analyzer.core.Lexeme;
 
 public class Tools {
 	
-	
 	private static String file_path="lily";//测试文本路径
 	
-	
 	private static ArrayList<String>all_word_list=new ArrayList<String>();//样本中所有出现过的单词集合(不重复)
-	
-	
 	
 	/**
     * @Description: 返回某篇帖子的分词结果
     * @param @param content
     * @return Map<String,Integer>（单词，个数）
     */
-    public  static HashMap<String, Integer> segStr(String content){
+    private  static HashMap<String, Integer> segStr(String content){
         // 分词
     	StringReader input = new StringReader(content);
         IKSegmenter iks = new IKSegmenter(input, true);
@@ -60,7 +56,7 @@ public class Tools {
      * @param txt_name
      * @return ArrayList<Post>
      */
-    public  static ArrayList<Post> getOneClassifyPosts(String txt_name,int post_classify){
+    private  static ArrayList<Post> getOneClassifyPosts(String txt_name,int post_classify){
     	ArrayList<Post>post_list=new ArrayList<Post>();
     	try{
     		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(txt_name), "UTF-8")); 
@@ -105,7 +101,7 @@ public class Tools {
 	 * @param post
 	 * @return vector
 	 */
-	public static ArrayList<Integer>getPostVector(Post post){
+	private static ArrayList<Integer>getPostVector(Post post){
 		ArrayList<Integer>vector=new ArrayList<Integer>();
 		HashMap<String,Integer>word_map=post.getWordMap();
 		for(String word:all_word_list){
@@ -126,7 +122,7 @@ public class Tools {
 	 * @param one_classify_posts
 	 * @return one_classify_matrix
 	 */
-	public static ArrayList<ArrayList<Integer>>getOneClassifyMatrix(ArrayList<Post>one_classify_posts){
+	private static ArrayList<ArrayList<Integer>>getOneClassifyMatrix(ArrayList<Post>one_classify_posts){
 		ArrayList<ArrayList<Integer>>one_classify_matrix=new ArrayList<ArrayList<Integer>>();
 		for(Post post:one_classify_posts){
 			ArrayList<Integer>vector=getPostVector(post);

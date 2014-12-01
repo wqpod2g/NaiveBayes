@@ -2,6 +2,7 @@ package nju.iip;
 
 import java.util.ArrayList;
 
+
 /**
  * 朴素贝叶斯伯努利模型实现
  * @author wangqiang
