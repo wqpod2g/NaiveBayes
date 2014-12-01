@@ -9,9 +9,29 @@ import java.util.ArrayList;
  *
  */
 public class NaiveBayesBernoulli {
+	
+	/**
+	 * 所有帖子组成的特征矩阵
+	 */
+	private static ArrayList<ArrayList<Integer>>all_matrix=new ArrayList<ArrayList<Integer>>();
+	
+	
+	/**
+	 * 得到所有帖子的矩阵
+	 * @return all_matrix
+	 */
+	public static ArrayList<ArrayList<Integer>>getAllMatrix(){
+		all_matrix=Tools.getAllMatrix();
+		return all_matrix;
+	}
+	
+	
+	 
+	
+	
 	public static void main(String[] args){
-		ArrayList<String>all_word_list=Tools.getAllWordList();
-		System.out.println(all_word_list.size());
+		getAllMatrix();
+		System.out.println(all_matrix.get(0).get(all_matrix.get(0).size()-1));
 	}
 
 }

@@ -9,21 +9,21 @@ import java.util.HashMap;
  */
 public class Post {
 	
-	private HashMap<String,Integer>post_map;//帖子分词后的map
+	private HashMap<String,Integer>word_map;//帖子分词后的map
 	
-	private String post_classify;//帖子类别
+	private int  post_classify;//帖子类别
 	
-	public Post(HashMap<String,Integer>post_map,String post_classify){
-		this.post_map=post_map;
+	public Post(HashMap<String,Integer>word_map,int post_classify){
+		this.word_map=word_map;
 		this.post_classify=post_classify;
 	}
 	
 	
-	public HashMap<String,Integer>getPostMap(){
-		return this.post_map;
+	public HashMap<String,Integer>getWordMap(){
+		return this.word_map;
 	}
 	
-	public String getPostClassify(){
+	public int getPostClassify(){
 		return this.post_classify;
 	}
 
