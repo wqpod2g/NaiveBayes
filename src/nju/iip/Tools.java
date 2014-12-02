@@ -146,6 +146,77 @@ public class Tools {
 		 }
 		 return all_matrix;
 	 }
+	
+	
+	
+	/**
+	 * @description 十折交叉划分
+	 * @param n
+	 * @param allMatrix
+	 * @param testSample
+	 * @param trainSample
+	 */
+	public static void divide(int n,ArrayList<ArrayList<Integer>>allMatrix,ArrayList<ArrayList<Integer>>testSample,HashMap<Integer,ArrayList<ArrayList<Integer>>>trainSample){
+		HashMap<Integer,ArrayList<ArrayList<Integer>>>allMap=new HashMap<Integer,ArrayList<ArrayList<Integer>>>();
+		int size=allMatrix.size();
+		int vector_size=allMatrix.get(0).size();
+		for(int i=0;i<size;i++){
+			Integer classify=allMatrix.get(i).get(vector_size-1);
+			if(!allMap.containsKey(classify)){
+				ArrayList<ArrayList<Integer>>vectors=new ArrayList<ArrayList<Integer>>();
+				vectors.add(allMatrix.get(i));
+				allMap.put(classify, vectors);
+			}
+			else{
+				allMap.get(classify).add(allMatrix.get(i));
+			}
+		}
+		
+		Set<Integer>classifys=allMap.keySet();
+		for(Integer classify:classifys){
+			ArrayList<ArrayList<Integer>>vectors=allMap.get(classify);
+			ArrayList<ArrayList<Integer>>vector_list=new ArrayList<ArrayList<Integer>>();
+			for(int i=0;i<vectors.size();i++){
+				if(i>=10*n&&i<(n+1)*10){
+					testSample.add(vectors.get(i));
+				}
+				else{
+					vector_list.add(vectors.get(i));
+				}
+			}
+			trainSample.put(classify, vector_list);
+		}
+	}
+	
+	 /**
+     * @decription 计算平均值
+     * @param list
+     * @return
+     */
+    public static Double getMean(ArrayList<Double>list){
+    	Double sum=0.0;
+		for(int i=0;i<list.size();i++){
+			sum=sum+list.get(i);
+		}
+		Double mean=sum/10;
+		return mean;
+    }
+    
+    /**
+     * @description 计算标准差
+     * @param list
+     * @return
+     */
+    public static Double getDeviation(ArrayList<Double>list){
+    	Double mean=getMean(list);
+    	Double deviation=0.0;
+    	for(int i=0;i<list.size();i++){
+    		deviation=deviation+(list.get(i)-mean)*(list.get(i)-mean);
+    	}
+    	deviation=Math.sqrt(deviation/(list.size()-1));
+    	
+    	return deviation ;
+    }
     
 
 }
