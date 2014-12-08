@@ -19,6 +19,9 @@ public class Tools {
 	
 	private static ArrayList<String>all_word_list=new ArrayList<String>();//样本中所有出现过的单词集合(不重复)
 	
+	
+	
+	
 	/**
     * @Description: 返回某篇帖子的分词结果
     * @param @param content
@@ -217,6 +220,9 @@ public class Tools {
     	
     	return deviation ;
     }
+    
+    
+    
     
 
 }

@@ -86,11 +86,8 @@ public class NaiveBayesBernoulli {
 		for(int i=0;i<vector_size;i++){
 			if(vector.get(i)==1){
 				p=Ptc.get(i);
+				probility=probility+Math.log(p);
 			}
-			else{
-				p=1-Ptc.get(i);
-			}
-			probility=probility+Math.log(p);
 		}
 		double Pc=Ptc.get(vector_size)/train_sample_size;
 		return probility+Math.log(Pc);
