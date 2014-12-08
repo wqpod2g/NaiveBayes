@@ -39,13 +39,12 @@ public class NaiveBayesMultinomial {
 	        HashMap<String, Integer> words = new HashMap<String, Integer>();
 	        try {
 	            while ((lexeme = iks.next()) != null) {
-	            	if(lexeme.getLength()>1){
 	            		if (words.containsKey(lexeme.getLexemeText())) {
 	                        words.put(lexeme.getLexemeText(), words.get(lexeme.getLexemeText()) + 1);
 	                    } else {
 	                        words.put(lexeme.getLexemeText(), 1);
 	                    }
-	            	}
+	            	
 	            }       
 	        }catch(IOException e) {
 	            e.printStackTrace();
@@ -203,10 +202,16 @@ public class NaiveBayesMultinomial {
 	 */
     private static String getResult(Post post, Map<String, Dic> dic_map) {
     	String result="";
+    	int sum=0;
     	double probility=Double.NEGATIVE_INFINITY;
     	Set<String>txt_names=dic_map.keySet();
     	for(String txt_name:txt_names){
-    		double temp=getProbility(post,dic_map.get(txt_name));
+    		sum=sum+dic_map.get(txt_name).get_count();
+    	}
+    	for(String txt_name:txt_names){
+    		Dic dic=dic_map.get(txt_name);
+    		double Pc=1.0*dic.get_count()/sum;
+    		double temp=getProbility(post,dic)+Math.log(Pc);
     		if(temp>probility){
 				probility=temp;
 				result=txt_name;
